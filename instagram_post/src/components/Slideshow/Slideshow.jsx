@@ -6,7 +6,7 @@ const slideImages = ["../media/1.jpg", "../media/2.jpg", "../media/3.jpg"];
 
 const properties = {
   infinite: false,
-  indicators: true,
+  // indicators: true,
   arrows: true,
   pauseOnHover: true,
   autoplay: false,
@@ -19,42 +19,40 @@ export const Slideshow = (props) => {
         <div className="each-slide">
           <div
             style={{
-              backgroundImage: "url(" + require("../media/1.jpg") + ")",
+              backgroundImage: "url(" + require("../../media/1.jpg") + ")",
+              shadowColor: "rgba(0,0,0, .4)", // IOS
+
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
-              height: props.height,
-              width: props.width / 2,
+              height: props.height - 50,
+              width: props.width / 1.3,
             }}
           ></div>
         </div>
         <div className="each-slide">
           <div
             style={{
-              backgroundImage: `url(${slideImages[1]})`,
+              backgroundImage: "url(" + require("../../media/2.jpg") + ")",
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
-              height: props.height,
-              width: props.width,
+              height: props.height - 50,
+              width: props.width / 1.3,
             }}
-          >
-            <span>Slide 2</span>
-          </div>
+          ></div>
         </div>
         <div className="each-slide">
           <div
             style={{
-              backgroundImage: `url(${slideImages[2]})`,
+              backgroundImage: "url(" + require("../../media/3.jpg") + ")",
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
-              height: "100%",
-              width: "100%",
+              height: props.height - 50,
+              width: props.width / 1.3,
             }}
-          >
-            <span>Slide 3</span>
-          </div>
+          ></div>
         </div>
       </Slide>
     </div>

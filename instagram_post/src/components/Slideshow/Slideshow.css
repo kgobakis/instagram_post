@@ -1,4 +1,5 @@
 .react-slideshow-container {
+  margin-left: -8px;
   display: flex;
   align-items: center;
 }
@@ -55,7 +56,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
+  /* top: 20px; */
 }
 .react-slideshow-container + div.indicators > .each-slideshow-indicator {
   width: 7px;
