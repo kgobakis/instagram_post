@@ -12,7 +12,7 @@ const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
       <div style={styles.solidLine} >
 
-    <Comment username={"celestgoldberg"} userComment={"Marvelous picture! Thought you would invite me too!"}/>        
+    <Comment timePosted={"10h"} commentLikes={10} username={"celestgoldberg"} userComment={"Marvelous picture! Thought you would invite me too!"}/>        
 
     </div>
    )
