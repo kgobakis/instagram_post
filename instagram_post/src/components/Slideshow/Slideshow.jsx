@@ -26,7 +26,7 @@ export const Slideshow = (props) => {
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               height: props.height - 50,
-              width: props.width / 1.3,
+              width: props.width / 1.4,
             }}
           ></div>
         </div>
@@ -38,7 +38,7 @@ export const Slideshow = (props) => {
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               height: props.height - 50,
-              width: props.width / 1.3,
+              width: props.width / 1.4,
             }}
           ></div>
         </div>
@@ -50,7 +50,7 @@ export const Slideshow = (props) => {
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               height: props.height - 50,
-              width: props.width / 1.3,
+              width: props.width / 1.4,
             }}
           ></div>
         </div>
