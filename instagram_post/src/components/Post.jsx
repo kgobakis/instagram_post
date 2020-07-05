@@ -1,35 +1,38 @@
 import React from "react";
 import { Slideshow } from "./Slideshow/Slideshow";
 import UserInfo from "../components/Comments/UserInfo";
-import Divider from "@material-ui/core/Divider";
+import PostMetadata from "./PostMetadata";
 import Paper from "@material-ui/core/Paper";
-import CommentsView from "./Comments/CommentsView"
+import CommentsView from "./Comments/CommentsView";
 
 class Post extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { width: 0, height: 0 };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  constructor() {
+    super();
+    this.state = {
+      height: window.innerHeight,
+      width: window.innerWidth,
+    };
+    this.updateDimensions = this.updateDimensions.bind(this);
   }
-
   componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener("resize", this.updateWindowDimensions);
+    window.addEventListener("resize", this.updateDimensions);
   }
-
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
+    window.removeEventListener("resize", this.updateDimensions);
   }
+  updateDimensions() {
+    // console.log(this.state.height, this.state.width);
 
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
+    this.setState({
+      height: window.innerHeight,
+      width: window.innerWidth,
+    });
   }
   render() {
     return (
-      <div style={styles.container}>
-        <Paper elevation={2}>
+      <div style={styles.root}>
+        <Paper elevation={3}>
           <div style={styles.containerInside}>
-            <Divider style={{ marginTop: 20 }} />
             <div
               style={{
                 height: this.state.height - 50,
@@ -40,11 +43,17 @@ class Post extends React.Component {
             </div>
             <div
               style={{
-                width: this.state.width - this.state.width / 1.36, marginLeft : -8
+                width: this.state.width / 1.4,
+                marginLeft: -8,
               }}
             >
+              <div style={styles.solidLine} />
+
               <UserInfo />
-              <CommentsView/>
+              <div style={styles.solidLine} />
+
+              <CommentsView />
+              <PostMetadata />
             </div>
           </div>
         </Paper>
@@ -55,13 +64,14 @@ class Post extends React.Component {
 export default Post;
 
 const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    margin: 15,
+  root: {
+    padding: 15,
   },
   containerInside: {
     display: "flex",
     flexDirection: "row",
+  },
+  solidLine: {
+    borderTop: "1.4px solid #bbb",
   },
 };

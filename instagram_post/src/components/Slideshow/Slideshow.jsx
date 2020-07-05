@@ -2,7 +2,7 @@ import React from "react";
 import { Slide } from "react-slideshow-image";
 import "./Slideshow.css";
 
-const slideImages = ["../media/1.jpg", "../media/2.jpg", "../media/3.jpg"];
+// const slideImages = ["../media/1.jpg", "../media/2.jpg", "../media/3.jpg"];
 
 const properties = {
   infinite: false,

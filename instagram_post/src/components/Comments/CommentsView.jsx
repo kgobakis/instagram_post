@@ -1,35 +1,32 @@
-import React, { useRef } from 'react'
-import Comment from "./Comment"
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
-// General scroll to element function
+import React from "react";
+import Comment from "./Comment";
+import { data } from "../../mockData/mock";
+const CommentsView = () => {
+  return (
+    <div style={styles.container}>
+      {Object.values(data).map((data) => (
+        <Comment
+          timePosted={data.timePosted}
+          username={data.username}
+          userComment={data.userComment}
+          avatar={data.avatar}
+          commentLikes={data.commentLikes}
+        />
+      ))}
 
- const CommentsView = () => {
-
-   const myRef = useRef(null)
-   const executeScroll = () => scrollToRef(myRef)
-
-   return (
-
-      <div style={styles.solidLine} >
-
-    <Comment timePosted={"10h"} commentLikes={10} username={"celestgoldberg"} userComment={"Marvelous picture! Thought you would invite me too!"}/>        
-
+      <div style={styles.solidLine} />
     </div>
-   )
-}
+  );
+};
 
 export default CommentsView;
 
 const styles = {
-    solidLine: {
-      borderTop: "1.4px solid #bbb",
-    },
-    container: {
-      display: "flex",
-      flexDirection: "row",
-  
-      margin: 15,
-    },
-    avatar: {},
-  };
-  
+  container: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  solidLine: {
+    borderTop: "1.4px solid #bbb",
+  },
+};

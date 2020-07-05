@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from "react-avatar";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-export default class Comment extends React.Component {
+export default class PostMetadata extends React.Component {
   state = {
     like: false,
     commentLikes: this.props.commentLikes,
@@ -35,19 +35,7 @@ export default class Comment extends React.Component {
               <strong style={{ fontSize: 15 }}>
                 {`${this.props.username} `}
               </strong>
-              <text style={{ fontSize: 15 }}>
-                {" "}
-                {this.props.userComment.length < 100
-                  ? `${this.props.userComment}`
-                  : `${
-                      this.props.userComment.substring(0, 31) +
-                      (
-                        <span>
-                          <text>...</text>
-                        </span>
-                      )
-                    }`}
-              </text>
+              <text style={{ fontSize: 15 }}> </text>
             </div>
             <div
               style={{
