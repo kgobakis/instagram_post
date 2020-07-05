@@ -4,7 +4,7 @@ export const data = {
     username: "celestgoldberg",
     userComment: "Marvelous picture! ",
     avatar: "https://randomuser.me/api/portraits/women/71.jpg",
-    commentLikes: 1,
+    commentLikes: 2,
   },
   p2: {
     timePosted: "30m",

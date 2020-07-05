@@ -4,6 +4,7 @@ import UserInfo from "../components/Comments/UserInfo";
 import PostMetadata from "./PostMetadata";
 import Paper from "@material-ui/core/Paper";
 import CommentsView from "./Comments/CommentsView";
+import AddComment from "./Comments/AddComment";
 
 class Post extends React.Component {
   constructor() {
@@ -47,13 +48,17 @@ class Post extends React.Component {
                 marginLeft: -8,
               }}
             >
-              <div style={styles.solidLine} />
+              <div style={styles.containerVertical}>
+                <div style={styles.solidLine} />
 
-              <UserInfo />
-              <div style={styles.solidLine} />
+                <UserInfo />
+                <div style={styles.solidLine} />
 
-              <CommentsView />
-              <PostMetadata />
+                <CommentsView />
+                <PostMetadata commentLikes={55} />
+                <div style={styles.solidLine} />
+                <AddComment />
+              </div>
             </div>
           </div>
         </Paper>
@@ -73,5 +78,9 @@ const styles = {
   },
   solidLine: {
     borderTop: "1.4px solid #bbb",
+  },
+  containerVertical: {
+    display: "flex",
+    flexDirection: "column",
   },
 };

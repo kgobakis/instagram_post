@@ -55,27 +55,34 @@ export default class Comment extends React.Component {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 width: "150px",
-                marginTop: 5,
+                paddingTop: 8,
               }}
             >
               <strong
                 style={{ color: "#999999", fontSize: 15, alignSelf: "center" }}
               >{`${this.props.timePosted}`}</strong>
-              <strong
-                style={{ color: "#999999", fontSize: 13, alignSelf: "center" }}
-              >
-                {`${this.props.commentLikes}`}{" "}
-                {this.props.commentLikes > 1 ? "likes" : "like"}
-              </strong>
-              <span>
+              {this.props.commentLikes == 0 ? (
+                <div style={{ marginLeft: -20 }} />
+              ) : (
                 <strong
                   style={{
                     color: "#999999",
                     fontSize: 13,
                     alignSelf: "center",
                   }}
-                >{`Reply`}</strong>
-              </span>
+                >
+                  {`${this.props.commentLikes}`}{" "}
+                  {this.props.commentLikes > 1 ? "likes" : "like"}
+                </strong>
+              )}
+
+              <strong
+                style={{
+                  color: "#999999",
+                  fontSize: 13,
+                  alignSelf: "center",
+                }}
+              >{`Reply`}</strong>
             </div>
           </div>
         </div>
