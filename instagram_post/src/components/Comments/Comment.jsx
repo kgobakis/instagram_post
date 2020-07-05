@@ -3,12 +3,45 @@ import Avatar from "react-avatar";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 export default class Comment extends React.Component {
-  state = {
-    like: false,
-    commentLikes: this.props.commentLikes,
-    timePosted: this.props.timePosted,
-  };
+  constructor() {
+    super();
+    this.state = {
+      like: false,
+      commentLikes: "",
+      timePosted: "",
+    };
 
+    this.addLike = this.addLike.bind(this);
+    this.removeLike = this.removeLike.bind(this);
+    this.handleLike = this.handleLike.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      like: false,
+      commentLikes: this.props.commentLikes,
+      timePosted: this.props.timePosted,
+    });
+  }
+  handleLike() {
+    if (this.state.like) {
+      this.removeLike();
+    } else {
+      this.addLike();
+    }
+  }
+  addLike = () => {
+    this.setState({
+      commentLikes: this.state.commentLikes + 1,
+      like: !this.state.like,
+    });
+  };
+  removeLike = () => {
+    this.setState({
+      commentLikes: this.state.commentLikes - 1,
+      like: !this.state.like,
+    });
+  };
   render() {
     return (
       <div style={styles.container}>
@@ -31,22 +64,12 @@ export default class Comment extends React.Component {
               flexDirection: "column",
             }}
           >
-            <div>
+            <div style={{ overflowWrap: "break-word" }}>
               <strong style={{ fontSize: 15 }}>
                 {`${this.props.username} `}
               </strong>
               <text style={{ fontSize: 15 }}>
-                {" "}
-                {this.props.userComment.length < 100
-                  ? `${this.props.userComment}`
-                  : `${
-                      this.props.userComment.substring(0, 31) +
-                      (
-                        <span>
-                          <text>...</text>
-                        </span>
-                      )
-                    }`}
+                {`${this.props.userComment}`}
               </text>
             </div>
             <div
@@ -61,7 +84,7 @@ export default class Comment extends React.Component {
               <strong
                 style={{ color: "#999999", fontSize: 15, alignSelf: "center" }}
               >{`${this.props.timePosted}`}</strong>
-              {this.props.commentLikes === 0 ? (
+              {this.state.commentLikes === 0 ? (
                 <div style={{ marginLeft: -20 }} />
               ) : (
                 <strong
@@ -71,8 +94,8 @@ export default class Comment extends React.Component {
                     alignSelf: "center",
                   }}
                 >
-                  {`${this.props.commentLikes}`}{" "}
-                  {this.props.commentLikes > 1 ? "likes" : "like"}
+                  {`${this.state.commentLikes}`}{" "}
+                  {this.state.commentLikes > 1 ? "likes" : "like"}
                 </strong>
               )}
 
@@ -90,7 +113,7 @@ export default class Comment extends React.Component {
         <div style={{ display: "flex", paddingBottom: 15 }}>
           <span
             style={{ alignSelf: "center" }}
-            onClick={() => this.setState({ like: !this.state.like })}
+            onClick={() => this.handleLike()}
           >
             {this.state.like ? (
               <AiFillHeart style={{ fontSize: 19, color: "#ED4956" }} />

@@ -2,7 +2,7 @@ import React from "react";
 
 import Post from "./components/Post";
 
-function App() {
+function App(props) {
   return <Post />;
 }
 

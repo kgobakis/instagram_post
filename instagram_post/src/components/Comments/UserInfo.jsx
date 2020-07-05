@@ -13,7 +13,7 @@ export default function UserInfo(props) {
         }}
       >
         <Avatar
-          src="https://randomuser.me/api/portraits/men/83.jpg"
+          src={require("../../media/avatar.jpg")}
           size="42"
           round={true}
           textSizeRatio={1.75}
