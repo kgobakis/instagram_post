@@ -1,10 +1,9 @@
 import React from "react";
 import { Slideshow } from "./Slideshow/Slideshow";
 import UserInfo from "../components/Comments/UserInfo";
-import PostMetadata from "./PostMetadata";
+
 import Paper from "@material-ui/core/Paper";
 import CommentsView from "./Comments/CommentsView";
-import AddComment from "./Comments/AddComment";
 
 class Post extends React.Component {
   constructor() {
@@ -55,9 +54,6 @@ class Post extends React.Component {
                 <div style={styles.solidLine} />
 
                 <CommentsView />
-                <PostMetadata commentLikes={55} />
-                <div style={styles.solidLine} />
-                <AddComment />
               </div>
             </div>
           </div>

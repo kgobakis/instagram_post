@@ -42,12 +42,6 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-
     margin: 15,
   },
-  root: {
-    // maxWidth: "510px",
-    // minWidth: "300px",
-  },
-  avatar: {},
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "react-avatar";
+
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FiShare } from "react-icons/fi";
 import { BsChat, BsBookmark, BsBookmarkFill } from "react-icons/bs";

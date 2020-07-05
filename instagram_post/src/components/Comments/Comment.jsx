@@ -61,7 +61,7 @@ export default class Comment extends React.Component {
               <strong
                 style={{ color: "#999999", fontSize: 15, alignSelf: "center" }}
               >{`${this.props.timePosted}`}</strong>
-              {this.props.commentLikes == 0 ? (
+              {this.props.commentLikes === 0 ? (
                 <div style={{ marginLeft: -20 }} />
               ) : (
                 <strong

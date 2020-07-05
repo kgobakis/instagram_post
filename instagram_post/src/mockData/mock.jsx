@@ -1,4 +1,4 @@
-export const data = {
+export const mockData = {
   p1: {
     timePosted: "10h",
     username: "celestgoldberg",

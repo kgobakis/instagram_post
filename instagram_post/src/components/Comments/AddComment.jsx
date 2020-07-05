@@ -1,11 +1,7 @@
 import React from "react";
-import Avatar from "react-avatar";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FiShare } from "react-icons/fi";
-import { BsChat, BsBookmark } from "react-icons/bs";
 import TextField from "@material-ui/core/TextField";
 
-export default class PostMetadata extends React.Component {
+export default class AddComment extends React.Component {
   state = {
     like: false,
     commentLikes: this.props.commentLikes,
@@ -18,7 +14,7 @@ export default class PostMetadata extends React.Component {
         <TextField id="standard-disabled" placeholder="Add a comment..." />
         <span
           onClick={() => {
-            alert("POSTED");
+            this.props.addComment();
           }}
         >
           <text color="#F0F6FD">POST</text>
