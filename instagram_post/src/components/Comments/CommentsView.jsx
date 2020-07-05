@@ -50,6 +50,7 @@ class CommentsView extends React.Component {
             userComment={comment.userComment}
             avatar={comment.avatar}
             commentLikes={comment.commentLikes}
+            width={this.props.width}
           />
         ))}
         <div style={styles.solidLine} />

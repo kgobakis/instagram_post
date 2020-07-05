@@ -53,7 +53,7 @@ class Post extends React.Component {
                 <UserInfo />
                 <div style={styles.solidLine} />
 
-                <CommentsView />
+                <CommentsView width={this.state.width} />
               </div>
             </div>
           </div>

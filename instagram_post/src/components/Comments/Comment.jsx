@@ -64,7 +64,7 @@ export default class Comment extends React.Component {
               flexDirection: "column",
             }}
           >
-            <div style={{ overflowWrap: "break-word" }}>
+            <div style={{ width: this.props.width / 5 }}>
               <strong style={{ fontSize: 15 }}>
                 {`${this.props.username} `}
               </strong>
