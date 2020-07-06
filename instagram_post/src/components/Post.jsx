@@ -1,7 +1,9 @@
 import React from "react";
 import { Slideshow } from "./Slideshow/Slideshow";
 import UserInfo from "../components/Comments/UserInfo";
-
+import { mockData } from "../mockData/mock";
+import { connect } from "react-redux";
+import store from "../store";
 import Paper from "@material-ui/core/Paper";
 import CommentsView from "./Comments/CommentsView";
 
@@ -53,7 +55,11 @@ class Post extends React.Component {
                 <UserInfo />
                 <div style={styles.solidLine} />
 
-                <CommentsView width={this.state.width} />
+                <CommentsView
+                  children={store.getState()}
+                  width={this.state.width}
+                  store={store}
+                />
               </div>
             </div>
           </div>
@@ -62,7 +68,16 @@ class Post extends React.Component {
     );
   }
 }
-export default Post;
+export default connect()(Post);
+
+store.dispatch({
+  type: "ADD_COMMENT",
+  userComment: "YOYOYOYOYOYOYOOYOYOYOYO",
+  username: "kgobakis",
+  avatar: require("../media/avatar.jpg"),
+  timePosted: "1m",
+  commentLikes: 2,
+});
 
 const styles = {
   root: {

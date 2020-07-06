@@ -43,6 +43,7 @@ export default class Comment extends React.Component {
     });
   };
   render() {
+    const { isReply } = this.props;
     return (
       <div style={styles.container}>
         <div

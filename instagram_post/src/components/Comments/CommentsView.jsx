@@ -1,6 +1,5 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import Comment from "./Comment";
-import { mockData } from "../../mockData/mock";
 import AddComment from "./AddComment";
 import PostMetadata from "../PostMetadata";
 import store from "../../store";
@@ -11,20 +10,13 @@ class CommentsView extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: [],
+      showReplies: false,
     };
-    this.getMock = this.getMock.bind(this);
     this.addComment = this.addComment.bind(this);
   }
 
-  componentDidMount() {
-    this.getMock();
-  }
-  getMock() {
-    this.setState({
-      data: mockData,
-    });
-  }
+  componentDidMount() {}
+
   addComment(text) {
     let temp = Object.assign(this.state.data);
     store.dispatch({ type: "ADD_COMMENT" });
@@ -35,43 +27,60 @@ class CommentsView extends React.Component {
       avatar: require("../../media/avatar.jpg"),
       commentLikes: 1,
     });
-    this.setState({
-      data: temp,
-    });
   }
 
   render() {
+    const { children } = this.props;
+
     return (
       <div style={styles.container}>
-        {Object.values(this.state.data).map((comment) => (
-          <Comment
-            timePosted={comment.timePosted}
-            username={comment.username}
-            userComment={comment.userComment}
-            avatar={comment.avatar}
-            commentLikes={comment.commentLikes}
-            width={this.props.width}
-          />
+        {Object.values(children.comments).map((comment) => (
+          <div key={comment.id}>
+            <Comment
+              timePosted={comment.timePosted}
+              username={comment.username}
+              userComment={comment.userComment}
+              avatar={comment.avatar}
+              commentLikes={comment.commentLikes}
+              width={this.props.width}
+            />
+            {comment.children &&
+              Object.values(comment.children).map((reply) => (
+                <div key={reply.id} style={{ paddingLeft: 50 }}>
+                  <Comment
+                    timePosted={reply.timePosted}
+                    username={reply.username}
+                    userComment={reply.userComment}
+                    avatar={reply.avatar}
+                    commentLikes={reply.commentLikes}
+                    width={this.props.width}
+                    children={reply.children}
+                  />
+                </div>
+              ))}{" "}
+          </div>
         ))}
-        <div style={styles.solidLine} />
 
-        <PostMetadata commentLikes={55} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div style={styles.solidLine} />
 
-        <div style={styles.solidLine} />
-        <AddComment addComment={this.addComment} />
+          <PostMetadata commentLikes={55} />
+
+          <div style={styles.solidLine} />
+          <AddComment store={this.props.store} addComment={this.addComment} />
+        </div>
       </div>
     );
   }
 }
 export default connect()(CommentsView);
-store.subscribe(() => {
-  console.log("Store updated!", store.getState());
-});
-store.dispatch({
-  type: "ADD_COMMENT",
-  userComment: "YOYOYOYOYOYOYOOYOYOYOYO",
-  username: "kgobakis",
-});
+
 const styles = {
   container: {
     display: "flex",

@@ -1,7 +1,9 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
+import store from "../../store";
+import { connect } from "react-redux";
 
-export default class AddComment extends React.Component {
+class AddComment extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -17,7 +19,19 @@ export default class AddComment extends React.Component {
   }
 
   handleSubmit() {
-    this.props.addComment(this.state.text);
+    console.log("clicked");
+    store.dispatch({
+      type: "ADD_COMMENT",
+      userComment: this.state.text,
+      username: "kgobakis",
+      avatar: require("../../media/avatar.jpg"),
+      timePosted: "1m",
+      commentLikes: 2,
+    });
+    this.forceUpdate();
+    this.setState({
+      text: "",
+    });
   }
 
   render() {
@@ -36,6 +50,9 @@ export default class AddComment extends React.Component {
     );
   }
 }
+
+store.subscribe(() => console.log(store.getState()));
+export default connect()(AddComment);
 const styles = {
   container: {
     display: "flex",
