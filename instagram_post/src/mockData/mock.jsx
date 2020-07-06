@@ -10,7 +10,7 @@ export const mockData = [
       {
         id: 10,
         timePosted: "2h",
-        username: "yayayayaay",
+        username: "kgobakis",
         userComment: "hahahaha ",
         avatar: require("../media/avatar.jpg"),
         commentLikes: 2,
@@ -29,7 +29,7 @@ export const mockData = [
       {
         id: 10,
         timePosted: "2h",
-        username: "yayayayaay",
+        username: "kgobakis",
         userComment: "hahahaha ",
         avatar: require("../media/avatar.jpg"),
         commentLikes: 2,

@@ -50,6 +50,7 @@ export default class Comment extends React.Component {
           style={{
             display: "flex",
             flexDirection: "row",
+            // width: this.props.width / 4.3,
           }}
         >
           <Avatar
@@ -99,14 +100,19 @@ export default class Comment extends React.Component {
                   {this.state.commentLikes > 1 ? "likes" : "like"}
                 </strong>
               )}
-
-              <strong
-                style={{
-                  color: "#999999",
-                  fontSize: 13,
-                  alignSelf: "center",
+              <span
+                onClick={() => {
+                  alert("This comment id is: ", this.props.id);
                 }}
-              >{`Reply`}</strong>
+              >
+                <strong
+                  style={{
+                    color: "#999999",
+                    fontSize: 13,
+                    alignSelf: "center",
+                  }}
+                >{`Reply`}</strong>
+              </span>
             </div>
           </div>
         </div>

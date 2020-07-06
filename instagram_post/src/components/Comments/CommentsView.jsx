@@ -18,19 +18,20 @@ class CommentsView extends React.Component {
   componentDidMount() {}
 
   addComment(text) {
-    let temp = Object.assign(this.state.data);
-    store.dispatch({ type: "ADD_COMMENT" });
-    temp.push({
+    store.dispatch({
+      type: "ADD_COMMENT",
       timePosted: "1m",
       username: "kgobakis",
       userComment: text,
       avatar: require("../../media/avatar.jpg"),
       commentLikes: 1,
     });
+
+    this.props.updatePostState();
   }
 
   render() {
-    const { children } = this.props;
+    const { children, width } = this.props;
 
     return (
       <div style={styles.container}>
@@ -42,7 +43,8 @@ class CommentsView extends React.Component {
               userComment={comment.userComment}
               avatar={comment.avatar}
               commentLikes={comment.commentLikes}
-              width={this.props.width}
+              width={width}
+              id={comment.id}
             />
             {comment.children &&
               Object.values(comment.children).map((reply) => (
@@ -53,11 +55,12 @@ class CommentsView extends React.Component {
                     userComment={reply.userComment}
                     avatar={reply.avatar}
                     commentLikes={reply.commentLikes}
-                    width={this.props.width}
+                    width={width}
                     children={reply.children}
+                    id={reply.id}
                   />
                 </div>
-              ))}{" "}
+              ))}
           </div>
         ))}
 
@@ -68,12 +71,20 @@ class CommentsView extends React.Component {
             justifyContent: "center",
           }}
         >
-          <div style={styles.solidLine} />
-
+          <div
+            style={{
+              borderTop: "1px solid #CDCDCD",
+              width: width / 3.7 + 8,
+            }}
+          />
           <PostMetadata commentLikes={55} />
-
-          <div style={styles.solidLine} />
-          <AddComment store={this.props.store} addComment={this.addComment} />
+          <div
+            style={{
+              borderTop: "1px solid #CDCDCD",
+              width: width / 3.7 + 8,
+            }}
+          />{" "}
+          <AddComment addComment={this.addComment} />
         </div>
       </div>
     );
@@ -87,6 +98,6 @@ const styles = {
     flexDirection: "column",
   },
   solidLine: {
-    borderTop: "1.4px solid #bbb",
+    borderTop: "1.4px solid #CDCDCD",
   },
 };

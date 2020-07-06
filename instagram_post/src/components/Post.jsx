@@ -23,8 +23,6 @@ class Post extends React.Component {
     window.removeEventListener("resize", this.updateDimensions);
   }
   updateDimensions() {
-    // console.log(this.state.height, this.state.width);
-
     this.setState({
       height: window.innerHeight,
       width: window.innerWidth,
@@ -33,19 +31,19 @@ class Post extends React.Component {
   render() {
     return (
       <div style={styles.root}>
-        <Paper elevation={3}>
+        <Paper elevation={4}>
           <div style={styles.containerInside}>
             <div
               style={{
                 height: this.state.height - 50,
-                width: this.state.width / 1.4,
+                width: this.state.width / 1.42,
               }}
             >
               <Slideshow height={this.state.height} width={this.state.width} />
             </div>
             <div
               style={{
-                width: this.state.width / 1.4,
+                width: this.state.width / 1.42,
                 marginLeft: -8,
               }}
             >
@@ -58,7 +56,7 @@ class Post extends React.Component {
                 <CommentsView
                   children={store.getState()}
                   width={this.state.width}
-                  store={store}
+                  updatePostState={this.updateDimensions}
                 />
               </div>
             </div>
@@ -70,14 +68,14 @@ class Post extends React.Component {
 }
 export default connect()(Post);
 
-store.dispatch({
-  type: "ADD_COMMENT",
-  userComment: "YOYOYOYOYOYOYOOYOYOYOYO",
-  username: "kgobakis",
-  avatar: require("../media/avatar.jpg"),
-  timePosted: "1m",
-  commentLikes: 2,
-});
+// store.dispatch({
+//   type: "ADD_COMMENT",
+//   userComment: "YOYOYOYOYOYOYOOYOYOYOYO",
+//   username: "kgobakis",
+//   avatar: require("../media/avatar.jpg"),
+//   timePosted: "1m",
+//   commentLikes: 2,
+// });
 
 const styles = {
   root: {
@@ -86,9 +84,10 @@ const styles = {
   containerInside: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "flex-start",
   },
   solidLine: {
-    borderTop: "1.4px solid #bbb",
+    borderTop: "1px solid #CDCDCD",
   },
   containerVertical: {
     display: "flex",

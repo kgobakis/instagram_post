@@ -15,6 +15,22 @@ const comments = (state = mockData, action) => {
           children: [],
         },
       ];
+    case "ADD_REPLY":
+      let oldState = Object.assign(state);
+      // while(oldState.)
+      //NEED SOME WAY TO DETECT WHICH COMMENT WAS CLICKED ON
+      return [
+        ...state,
+        {
+          id: randomId(),
+          username: action.username,
+          userComment: action.userComment,
+          avatar: action.avatar,
+          timePosted: action.timePosted,
+          commentLikes: action.commentLikes,
+          children: [],
+        },
+      ];
     case "REMOVE_COMMENT":
       return [
         ...state,

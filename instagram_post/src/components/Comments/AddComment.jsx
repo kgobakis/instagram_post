@@ -19,16 +19,8 @@ class AddComment extends React.Component {
   }
 
   handleSubmit() {
-    console.log("clicked");
-    store.dispatch({
-      type: "ADD_COMMENT",
-      userComment: this.state.text,
-      username: "kgobakis",
-      avatar: require("../../media/avatar.jpg"),
-      timePosted: "1m",
-      commentLikes: 2,
-    });
-    this.forceUpdate();
+    this.props.addComment(this.state.text);
+
     this.setState({
       text: "",
     });
@@ -43,7 +35,7 @@ class AddComment extends React.Component {
           value={this.state.text}
           placeholder="Add a comment..."
         />
-        <span onClick={this.handleSubmit}>
+        <span onClick={this.state.text.length > 0 ? this.handleSubmit : null}>
           <text color="#F0F6FD">POST</text>
         </span>
       </div>
