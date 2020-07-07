@@ -132,14 +132,12 @@ class CommentsView extends React.Component {
           <div
             style={{
               borderTop: "1px solid #CDCDCD",
-              width: width / 3.7 + 8,
             }}
           />
           <PostMetadata commentLikes={55} />
           <div
             style={{
               borderTop: "1px solid #CDCDCD",
-              width: width / 3.7 + 8,
             }}
           />{" "}
           <AddComment
@@ -164,8 +162,6 @@ const styles = {
   container: {
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "space-between",
-    // alignItems: "center",
   },
   solidLine: {
     borderTop: "1.4px solid #CDCDCD",

@@ -41,21 +41,34 @@ class Post extends React.Component {
   }
   render() {
     return (
-      <div style={styles.root}>
-        <Paper elevation={4}>
-          <div style={styles.containerInside}>
+      <div
+        style={{
+          padding: 15,
+        }}
+      >
+        <Paper square elevation={4}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: this.props.value !== "Portrait" ? "row" : "column",
+              justifyContent: "flex-start",
+              marginLeft: -9,
+            }}
+          >
             <div
               style={{
-                height: this.state.height - 50,
-                width: this.state.width / 1.42,
+                width:
+                  this.props.value !== "Portrait" ? "calc(70% + 20px)" : "100%",
               }}
             >
-              <Slideshow height={this.state.height} width={this.state.width} />
+              <Slideshow height={this.state.height} />
             </div>
             <div
               style={{
-                width: this.state.width / 1.42,
-                marginLeft: -8,
+                width: "calc(30% - 10px)",
+                transform:
+                  this.props.value !== "Portrait" ? "" : "translate(10px,0px)",
+                marginLeft: this.props.value !== "Portrait" ? "-10px" : "",
               }}
             >
               <div style={styles.containerVertical}>
@@ -80,13 +93,11 @@ class Post extends React.Component {
 export default connect()(Post);
 
 const styles = {
-  root: {
-    padding: 15,
-  },
   containerInside: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
+    marginLeft: -9,
   },
   solidLine: {
     borderTop: "1px solid #CDCDCD",

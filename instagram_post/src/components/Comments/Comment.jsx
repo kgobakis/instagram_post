@@ -113,9 +113,7 @@ export default class Comment extends React.Component {
               <strong
                 style={{ color: "#999999", fontSize: 15, alignSelf: "center" }}
               >{`${this.props.timePosted}`}</strong>
-              {this.state.commentLikes === 0 ? (
-                <div style={{ marginLeft: -20 }} />
-              ) : (
+              {this.state.commentLikes === 0 ? null : (
                 <strong
                   style={{
                     color: "#999999",
@@ -128,7 +126,17 @@ export default class Comment extends React.Component {
                 </strong>
               )}
               <button
-                style={styles.button}
+                style={{
+                  color: "#2B94F6",
+                  border: "none",
+                  backgroundColor: "inherit",
+
+                  fontSize: "16px",
+                  cursor: "pointer",
+                  display: "inline-block",
+                  transform:
+                    this.state.commentLikes === 0 ? "translate(-70px,0px)" : "",
+                }}
                 onClick={() => {
                   this.props.toggleReply(
                     this.props.username,
@@ -140,7 +148,6 @@ export default class Comment extends React.Component {
                   style={{
                     color: "#999999",
                     fontSize: 13,
-                    alignSelf: "center",
                   }}
                 >{`Reply`}</strong>
               </button>
@@ -170,14 +177,5 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     margin: 15,
-  },
-  button: {
-    color: "#2B94F6",
-    border: "none",
-    backgroundColor: "inherit",
-
-    fontSize: "16px",
-    cursor: "pointer",
-    display: "inline-block",
   },
 };

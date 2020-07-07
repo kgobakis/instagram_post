@@ -5,7 +5,7 @@ export const mockData = [
     username: "celestgoldberg",
     userComment: "Marvelous picture! ",
     avatar: "https://randomuser.me/api/portraits/women/71.jpg",
-    commentLikes: 2,
+    commentLikes: 0,
     children: [
       // {
       //   id: 1,
