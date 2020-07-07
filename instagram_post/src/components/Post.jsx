@@ -9,9 +9,7 @@ import CommentsView from "./Comments/CommentsView";
 
 class Post extends React.Component {
   constructor() {
-    let data =
-      JSON.parse(localStorage.getItem("comments")) ||
-      localStorage.getItem("comments", JSON.stringify(mockData));
+    let data = JSON.parse(localStorage.getItem("comments"));
 
     super();
     this.state = {

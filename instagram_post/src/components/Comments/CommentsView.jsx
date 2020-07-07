@@ -30,13 +30,14 @@ class CommentsView extends React.Component {
     });
     localStorage.setItem("id", id + 1);
     localStorage.setItem("comments", JSON.stringify(comments));
-    console.log(JSON.parse(localStorage.getItem("comments")));
+
     this.props.updatePostState();
   }
 
   render() {
     const { children, width } = this.props;
-
+    let locallyLikedIds = JSON.parse(localStorage.getItem("locallyLikedIds"));
+    console.log(locallyLikedIds);
     return (
       <div style={styles.container}>
         {children &&
@@ -50,6 +51,10 @@ class CommentsView extends React.Component {
                 commentLikes={comment.commentLikes}
                 width={width}
                 id={comment.id}
+                like={
+                  locallyLikedIds.includes(comment.id.toString()) ? true : false
+                }
+                // like={false}
               />
               {comment.children &&
                 Object.values(comment.children).map((reply) => (
@@ -63,6 +68,11 @@ class CommentsView extends React.Component {
                       width={width}
                       children={reply.children}
                       id={reply.id}
+                      like={
+                        locallyLikedIds.includes(reply.id.toString())
+                          ? true
+                          : false
+                      }
                     />
                   </div>
                 ))}

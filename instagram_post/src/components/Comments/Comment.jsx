@@ -3,10 +3,10 @@ import Avatar from "react-avatar";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 export default class Comment extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      like: false,
+      like: props.like,
       commentLikes: 0,
       timePosted: "",
     };
@@ -18,18 +18,26 @@ export default class Comment extends React.Component {
 
   componentDidMount() {
     this.setState({
-      like: false,
       commentLikes: this.props.commentLikes,
       timePosted: this.props.timePosted,
     });
   }
-  handleLike() {
-    if (this.state.like) {
-      this.removeLike();
-    } else {
+  handleLike = () => {
+    let locallyLikedIds = JSON.parse(localStorage.getItem("locallyLikedIds"));
+
+    if (!this.state.like) {
+      locallyLikedIds.push(this.props.id.toString());
+      localStorage.setItem("locallyLikedIds", JSON.stringify(locallyLikedIds));
       this.addLike();
+    } else {
+      let index = locallyLikedIds.indexOf(this.props.id.toString());
+      if (index > -1) {
+        locallyLikedIds.splice(index, 1);
+      }
+      localStorage.setItem("locallyLikedIds", JSON.stringify(locallyLikedIds));
+      this.removeLike();
     }
-  }
+  };
   addLike = () => {
     this.setState({
       commentLikes: this.state.commentLikes + 1,

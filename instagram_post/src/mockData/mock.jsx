@@ -8,7 +8,7 @@ export const mockData = [
     commentLikes: 2,
     children: [
       {
-        id: 10,
+        id: 2,
         timePosted: "2h",
         username: "kgobakis",
         userComment: "hahahaha ",
@@ -18,7 +18,7 @@ export const mockData = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     timePosted: "30m",
     username: "applefusion",
     userComment:
@@ -27,7 +27,7 @@ export const mockData = [
     commentLikes: 10,
     children: [
       {
-        id: 10,
+        id: 4,
         timePosted: "2h",
         username: "kgobakis",
         userComment: "hahahaha ",
