@@ -82,10 +82,23 @@ export default class Comment extends React.Component {
               <strong style={{ fontSize: 15 }}>
                 {`${this.props.username} `}
               </strong>
-              <text
-                variant="subtitle1"
-                style={{ fontSize: 15.5 }}
-              >{`${this.props.userComment}`}</text>
+              {this.props.userLink ? (
+                <a
+                  style={{
+                    textDecoration: "none",
+                    color: "#0A366B",
+                  }}
+                  href=""
+                >
+                  {" "}
+                  {this.props.userLink + " "}{" "}
+                </a>
+              ) : (
+                ""
+              )}
+              <text variant="subtitle1" style={{ fontSize: 15.5 }}>
+                {`${this.props.userComment} !!!!`}
+              </text>
             </div>
 
             <div
@@ -117,7 +130,10 @@ export default class Comment extends React.Component {
               <button
                 style={styles.button}
                 onClick={() => {
-                  this.props.toggleReply(this.props.username, this.props.id);
+                  this.props.toggleReply(
+                    this.props.username,
+                    this.props.parentId ? this.props.parentId : this.props.id
+                  );
                 }}
               >
                 <strong

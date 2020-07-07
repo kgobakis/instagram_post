@@ -8,7 +8,10 @@ localStorage.getItem("comments") ||
 localStorage.getItem("id") || localStorage.setItem("id", 10);
 localStorage.getItem("locallyLikedIds") ||
   localStorage.setItem("locallyLikedIds", JSON.stringify([]));
+localStorage.getItem("saveForLater") ||
+  localStorage.setItem("saveForLater", false);
 // localStorage.clear();
+
 function App(props) {
   return <Post />;
 }
