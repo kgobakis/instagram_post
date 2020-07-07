@@ -9,12 +9,18 @@ import CommentsView from "./Comments/CommentsView";
 
 class Post extends React.Component {
   constructor() {
+    let data =
+      JSON.parse(localStorage.getItem("comments")) ||
+      localStorage.getItem("comments", JSON.stringify(mockData));
+
     super();
     this.state = {
       height: window.innerHeight,
       width: window.innerWidth,
+      data: data,
     };
     this.updateDimensions = this.updateDimensions.bind(this);
+    this.updatePost = this.updatePost.bind(this);
   }
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions);
@@ -26,6 +32,13 @@ class Post extends React.Component {
     this.setState({
       height: window.innerHeight,
       width: window.innerWidth,
+    });
+  }
+  updatePost() {
+    let data = JSON.parse(localStorage.getItem("comments"));
+
+    this.setState({
+      data: data,
     });
   }
   render() {
@@ -54,9 +67,9 @@ class Post extends React.Component {
                 <div style={styles.solidLine} />
 
                 <CommentsView
-                  children={store.getState()}
+                  children={this.state.data}
                   width={this.state.width}
-                  updatePostState={this.updateDimensions}
+                  updatePostState={this.updatePost}
                 />
               </div>
             </div>
@@ -67,15 +80,6 @@ class Post extends React.Component {
   }
 }
 export default connect()(Post);
-
-// store.dispatch({
-//   type: "ADD_COMMENT",
-//   userComment: "YOYOYOYOYOYOYOOYOYOYOYO",
-//   username: "kgobakis",
-//   avatar: require("../media/avatar.jpg"),
-//   timePosted: "1m",
-//   commentLikes: 2,
-// });
 
 const styles = {
   root: {

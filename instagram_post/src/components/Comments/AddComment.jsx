@@ -20,10 +20,7 @@ class AddComment extends React.Component {
 
   handleSubmit() {
     this.props.addComment(this.state.text);
-
-    this.setState({
-      text: "",
-    });
+    this.setState({ text: "" });
   }
 
   render() {
@@ -43,7 +40,7 @@ class AddComment extends React.Component {
   }
 }
 
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 export default connect()(AddComment);
 const styles = {
   container: {

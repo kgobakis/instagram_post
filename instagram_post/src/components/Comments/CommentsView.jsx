@@ -18,15 +18,19 @@ class CommentsView extends React.Component {
   componentDidMount() {}
 
   addComment(text) {
-    store.dispatch({
-      type: "ADD_COMMENT",
-      timePosted: "1m",
-      username: "kgobakis",
+    let comments = JSON.parse(localStorage.getItem("comments"));
+    let id = parseInt(localStorage.getItem("id"));
+    comments.push({
+      id: id,
       userComment: text,
+      username: "kgobakis",
       avatar: require("../../media/avatar.jpg"),
-      commentLikes: 1,
+      timePosted: "1m",
+      commentLikes: 2,
     });
-
+    localStorage.setItem("id", id + 1);
+    localStorage.setItem("comments", JSON.stringify(comments));
+    console.log(JSON.parse(localStorage.getItem("comments")));
     this.props.updatePostState();
   }
 
@@ -35,34 +39,35 @@ class CommentsView extends React.Component {
 
     return (
       <div style={styles.container}>
-        {Object.values(children.comments).map((comment) => (
-          <div key={comment.id}>
-            <Comment
-              timePosted={comment.timePosted}
-              username={comment.username}
-              userComment={comment.userComment}
-              avatar={comment.avatar}
-              commentLikes={comment.commentLikes}
-              width={width}
-              id={comment.id}
-            />
-            {comment.children &&
-              Object.values(comment.children).map((reply) => (
-                <div key={reply.id} style={{ paddingLeft: 50 }}>
-                  <Comment
-                    timePosted={reply.timePosted}
-                    username={reply.username}
-                    userComment={reply.userComment}
-                    avatar={reply.avatar}
-                    commentLikes={reply.commentLikes}
-                    width={width}
-                    children={reply.children}
-                    id={reply.id}
-                  />
-                </div>
-              ))}
-          </div>
-        ))}
+        {children &&
+          Object.values(children).map((comment) => (
+            <div key={comment.id}>
+              <Comment
+                timePosted={comment.timePosted}
+                username={comment.username}
+                userComment={comment.userComment}
+                avatar={comment.avatar}
+                commentLikes={comment.commentLikes}
+                width={width}
+                id={comment.id}
+              />
+              {comment.children &&
+                Object.values(comment.children).map((reply) => (
+                  <div key={reply.id} style={{ paddingLeft: 50 }}>
+                    <Comment
+                      timePosted={reply.timePosted}
+                      username={reply.username}
+                      userComment={reply.userComment}
+                      avatar={reply.avatar}
+                      commentLikes={reply.commentLikes}
+                      width={width}
+                      children={reply.children}
+                      id={reply.id}
+                    />
+                  </div>
+                ))}
+            </div>
+          ))}
 
         <div
           style={{

@@ -5,11 +5,44 @@ import { FiShare } from "react-icons/fi";
 import { BsChat, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 
 export default class PostMetadata extends React.Component {
-  state = {
-    like: false,
-    commentLikes: this.props.commentLikes,
-    timePosted: this.props.timePosted,
-    postShared: false,
+  constructor() {
+    super();
+    this.state = {
+      like: false,
+      commentLikes: 0,
+      timePosted: "",
+    };
+
+    this.addLike = this.addLike.bind(this);
+    this.removeLike = this.removeLike.bind(this);
+    this.handleLike = this.handleLike.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      like: false,
+      commentLikes: this.props.commentLikes,
+      timePosted: this.props.timePosted,
+    });
+  }
+  handleLike() {
+    if (this.state.like) {
+      this.removeLike();
+    } else {
+      this.addLike();
+    }
+  }
+  addLike = () => {
+    this.setState({
+      commentLikes: this.state.commentLikes + 1,
+      like: !this.state.like,
+    });
+  };
+  removeLike = () => {
+    this.setState({
+      commentLikes: this.state.commentLikes - 1,
+      like: !this.state.like,
+    });
   };
 
   render() {
@@ -30,7 +63,7 @@ export default class PostMetadata extends React.Component {
               marginBottom: 5,
             }}
           >
-            <span onClick={() => this.setState({ like: !this.state.like })}>
+            <span onClick={() => this.handleLike()}>
               {this.state.like ? (
                 <AiFillHeart style={{ fontSize: 34, color: "#ED4956" }} />
               ) : (
@@ -56,8 +89,8 @@ export default class PostMetadata extends React.Component {
             <strong
               style={{ color: "#000", fontSize: 17, alignSelf: "center" }}
             >
-              {`${this.props.commentLikes}`}{" "}
-              {this.props.commentLikes > 1 ? "likes" : "like"}
+              {`${this.state.commentLikes}`}{" "}
+              {this.state.commentLikes > 1 ? "likes" : "like"}
             </strong>
           </div>
           <div style={{ marginTop: 5 }}>

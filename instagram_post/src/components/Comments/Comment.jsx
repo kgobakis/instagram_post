@@ -7,7 +7,7 @@ export default class Comment extends React.Component {
     super();
     this.state = {
       like: false,
-      commentLikes: "",
+      commentLikes: 0,
       timePosted: "",
     };
 
@@ -43,7 +43,6 @@ export default class Comment extends React.Component {
     });
   };
   render() {
-    const { isReply } = this.props;
     return (
       <div style={styles.container}>
         <div
