@@ -10,14 +10,15 @@ localStorage.getItem("comments") ||
 localStorage.getItem("id") || localStorage.setItem("id", 10);
 localStorage.getItem("locallyLikedIds") ||
   localStorage.setItem("locallyLikedIds", JSON.stringify([]));
-localStorage.getItem("saveForLater") ||
-  localStorage.setItem("saveForLater", false);
+// localStorage.getItem("saveForLater") ||
+//   localStorage.setItem("saveForLater", false);
 // localStorage.clear();
 
 function App(props) {
   const [value, setValue] = React.useState(2);
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    console.log(value);
   };
   return (
     <div

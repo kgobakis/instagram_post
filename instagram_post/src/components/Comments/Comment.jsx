@@ -58,7 +58,6 @@ export default class Comment extends React.Component {
           style={{
             display: "flex",
             flexDirection: "row",
-            // width: this.props.width / 4.3,
           }}
         >
           <Avatar
@@ -74,11 +73,7 @@ export default class Comment extends React.Component {
               flexDirection: "column",
             }}
           >
-            <div
-              style={{
-                width: this.props.width / 5,
-              }}
-            >
+            <div>
               <strong style={{ fontSize: 15 }}>
                 {`${this.props.username} `}
               </strong>
@@ -97,7 +92,7 @@ export default class Comment extends React.Component {
                 ""
               )}
               <text variant="subtitle1" style={{ fontSize: 15.5 }}>
-                {`${this.props.userComment} !!!!`}
+                {`${this.props.userComment}`}
               </text>
             </div>
 

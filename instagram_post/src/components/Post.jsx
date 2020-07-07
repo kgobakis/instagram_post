@@ -43,32 +43,32 @@ class Post extends React.Component {
     return (
       <div
         style={{
-          padding: 15,
+          paddingLeft: 15,
+          paddingRight: 15,
         }}
       >
         <Paper square elevation={4}>
           <div
             style={{
               display: "flex",
-              flexDirection: this.props.value !== "Portrait" ? "row" : "column",
+              flexDirection: this.props.value !== 1 ? "row" : "column",
               justifyContent: "flex-start",
-              marginLeft: -9,
+              // marginLeft: -9,
             }}
           >
             <div
               style={{
-                width:
-                  this.props.value !== "Portrait" ? "calc(70% + 20px)" : "100%",
+                width: this.props.value !== 1 ? "calc(70% + 20px)" : "100%",
               }}
             >
               <Slideshow height={this.state.height} />
             </div>
             <div
               style={{
-                width: "calc(30% - 10px)",
-                transform:
-                  this.props.value !== "Portrait" ? "" : "translate(10px,0px)",
-                marginLeft: this.props.value !== "Portrait" ? "-10px" : "",
+                // width: "calc(100% -50px)",
+
+                transform: this.props.value === 1 ? "translate(0px,0px)" : "",
+                marginLeft: this.props.value !== 1 ? "-10px" : "",
               }}
             >
               <div style={styles.containerVertical}>

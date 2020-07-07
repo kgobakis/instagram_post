@@ -21,8 +21,7 @@ export const mockData = [
     id: 2,
     timePosted: "30m",
     username: "applefusion",
-    userComment:
-      "Not that much to see over there, come back to NYC :)  Not that much to see over there, come back to NYC :)",
+    userComment: "Not that much to see over there, come back to NYC :) ",
     avatar: "https://randomuser.me/api/portraits/men/8.jpg",
     commentLikes: 10,
     children: [
