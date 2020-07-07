@@ -1,6 +1,7 @@
 import React from "react";
 import Avatar from "react-avatar";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import Typography from "@material-ui/core/Typography";
 
 export default class Comment extends React.Component {
   constructor(props) {
@@ -73,14 +74,20 @@ export default class Comment extends React.Component {
               flexDirection: "column",
             }}
           >
-            <div style={{ width: this.props.width / 5 }}>
+            <div
+              style={{
+                width: this.props.width / 5,
+              }}
+            >
               <strong style={{ fontSize: 15 }}>
                 {`${this.props.username} `}
               </strong>
-              <text style={{ fontSize: 15 }}>
-                {`${this.props.userComment}`}
-              </text>
+              <text
+                variant="subtitle1"
+                style={{ fontSize: 15.5 }}
+              >{`${this.props.userComment}`}</text>
             </div>
+
             <div
               style={{
                 display: "flex",
@@ -107,9 +114,10 @@ export default class Comment extends React.Component {
                   {this.state.commentLikes > 1 ? "likes" : "like"}
                 </strong>
               )}
-              <span
+              <button
+                style={styles.button}
                 onClick={() => {
-                  alert("This comment id is: ", this.props.id);
+                  this.props.toggleReply(this.props.username);
                 }}
               >
                 <strong
@@ -119,7 +127,7 @@ export default class Comment extends React.Component {
                     alignSelf: "center",
                   }}
                 >{`Reply`}</strong>
-              </span>
+              </button>
             </div>
           </div>
         </div>
@@ -146,5 +154,14 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     margin: 15,
+  },
+  button: {
+    color: "#2B94F6",
+    border: "none",
+    backgroundColor: "inherit",
+
+    fontSize: "16px",
+    cursor: "pointer",
+    display: "inline-block",
   },
 };

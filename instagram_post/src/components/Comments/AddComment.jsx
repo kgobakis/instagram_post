@@ -1,10 +1,10 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import store from "../../store";
+import { FormControl, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
+import { MdCancel } from "react-icons/md";
 
 class AddComment extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       text: "",
@@ -17,30 +17,50 @@ class AddComment extends React.Component {
   handleChange(event) {
     this.setState({ text: event.target.value });
   }
-
   handleSubmit() {
-    this.props.addComment(this.state.text);
-    this.setState({ text: "" });
+    if (this.props.usernameReply) {
+    } else {
+      this.props.addComment(this.state.text);
+      this.setState({ text: "" });
+    }
   }
-
+  //ADD REPLIESSESESESESES
   render() {
     return (
       <div style={styles.container}>
-        <TextField
-          id="standard-disabled"
-          onChange={this.handleChange}
-          value={this.state.text}
-          placeholder="Add a comment..."
-        />
-        <span onClick={this.state.text.length > 0 ? this.handleSubmit : null}>
-          <text color="#F0F6FD">POST</text>
-        </span>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <FormControl>
+            <TextField
+              onChange={this.handleChange}
+              value={this.state.text}
+              placeholder="Add a comment..."
+              onSubmit={this.state.text.length > 0 ? this.handleSubmit : null}
+            />
+          </FormControl>
+          {this.props.usernameReply ? (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <span
+                style={{ marginTop: 5, marginLeft: 5 }}
+                onClick={this.props.emptyReply}
+              >
+                {" "}
+                <MdCancel />{" "}
+              </span>
+              <text>Replying to {this.props.usernameReply}</text>
+            </div>
+          ) : null}
+        </div>
+        <button
+          style={styles.button}
+          onClick={this.state.text.length > 0 ? this.handleSubmit : null}
+        >
+          <strong>Post</strong>
+        </button>
       </div>
     );
   }
 }
 
-// store.subscribe(() => console.log(store.getState()));
 export default connect()(AddComment);
 const styles = {
   container: {
@@ -48,5 +68,14 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     margin: 15,
+  },
+  button: {
+    color: "#2B94F6",
+    border: "none",
+    backgroundColor: "inherit",
+    padding: "14px 14px",
+    fontSize: "16px",
+    cursor: "pointer",
+    display: "inline-block",
   },
 };

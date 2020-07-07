@@ -10,10 +10,11 @@ export default function UserInfo(props) {
         style={{
           display: "flex",
           flexDirection: "row",
+          alignItems: "center",
         }}
       >
         <Avatar
-          src={require("../../media/avatar.jpg")}
+          src="./media/avatar.jpg"
           size="42"
           round={true}
           textSizeRatio={1.75}
@@ -24,9 +25,8 @@ export default function UserInfo(props) {
         </div>
       </div>
 
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <span
-          style={{ alignSelf: "center" }}
           onClick={() => {
             alert("Three Dots!");
           }}
