@@ -1,7 +1,7 @@
 import React from "react";
 import { Slideshow } from "./Slideshow/Slideshow";
 import UserInfo from "../components/Comments/UserInfo";
-import { mockData } from "../mockData/mock";
+
 import { connect } from "react-redux";
 import store from "../store";
 import Paper from "@material-ui/core/Paper";
@@ -39,6 +39,9 @@ class Post extends React.Component {
       data: data,
     });
   }
+  clearStorage = () => {
+    localStorage.clear();
+  };
   render() {
     return (
       <div
@@ -53,7 +56,6 @@ class Post extends React.Component {
               display: "flex",
               flexDirection: this.props.value !== 1 ? "row" : "column",
               justifyContent: "flex-start",
-              // marginLeft: -9,
             }}
           >
             <div
@@ -65,8 +67,6 @@ class Post extends React.Component {
             </div>
             <div
               style={{
-                // width: "calc(100% -50px)",
-
                 transform: this.props.value === 1 ? "translate(0px,0px)" : "",
                 marginLeft: this.props.value !== 1 ? "-10px" : "",
               }}
@@ -79,7 +79,6 @@ class Post extends React.Component {
 
                 <CommentsView
                   children={this.state.data}
-                  width={this.state.width}
                   updatePostState={this.updatePost}
                 />
               </div>

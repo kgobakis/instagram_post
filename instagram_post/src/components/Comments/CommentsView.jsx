@@ -13,7 +13,7 @@ class CommentsView extends React.Component {
       commentId: "",
     };
     this.addComment = this.addComment.bind(this);
-    // this.addReply = this.addReply.bind(this);
+
     this.toggleReply = this.toggleReply.bind(this);
     this.makeReply = this.makeReply.bind(this);
   }

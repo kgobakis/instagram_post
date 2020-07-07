@@ -29,7 +29,7 @@ class AddComment extends React.Component {
       this.setState({ text: "" });
     }
   }
-  //ADD REPLIESSESESESESES
+
   render() {
     return (
       <div style={styles.container}>

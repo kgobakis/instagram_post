@@ -6,16 +6,7 @@ export const mockData = [
     userComment: "Marvelous picture! ",
     avatar: "https://randomuser.me/api/portraits/women/71.jpg",
     commentLikes: 0,
-    children: [
-      // {
-      //   id: 1,
-      //   timePosted: "2h",
-      //   username: "kgobakis",
-      //   userComment: "hahahaha ",
-      //   avatar: "./media/avatar.jpg",
-      //   commentLikes: 2,
-      // },
-    ],
+    children: [],
   },
   {
     id: 2,
@@ -24,16 +15,7 @@ export const mockData = [
     userComment: "Not that much to see over there, come back to NYC :) ",
     avatar: "https://randomuser.me/api/portraits/men/8.jpg",
     commentLikes: 10,
-    children: [
-      // {
-      //   id: 3,
-      //   timePosted: "2h",
-      //   username: "kgobakis",
-      //   userComment: "hahahaha ",
-      //   avatar: "./media/avatar.jpg",
-      //   commentLikes: 2,
-      // },
-    ],
+    children: [],
   },
   {
     id: 3,
@@ -53,21 +35,4 @@ export const mockData = [
     commentLikes: 10,
     children: [],
   },
-  // },
-  // {
-  //   id: 5,
-  //   timePosted: "30m",
-  //   username: "smartandpowerful32",
-  //   userComment: "Wish I could be there... :/",
-  //   avatar: "https://randomuser.me/api/portraits/women/28.jpg",
-  //   commentLikes: 10,
-  // },
-  // {
-  //   id: 6,
-  //   timePosted: "30m",
-  //   username: "orangejuice",
-  //   userComment: "Man, this is a nice view!",
-  //   avatar: "https://randomuser.me/api/portraits/men/20.jpg",
-  //   commentLikes: 10,
-  // },
 ];
