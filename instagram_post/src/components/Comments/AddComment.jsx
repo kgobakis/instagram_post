@@ -19,6 +19,11 @@ class AddComment extends React.Component {
   }
   handleSubmit() {
     if (this.props.usernameReply) {
+      this.props.makeReply(
+        this.props.usernameReply,
+        this.props.id,
+        this.state.text
+      );
     } else {
       this.props.addComment(this.state.text);
       this.setState({ text: "" });

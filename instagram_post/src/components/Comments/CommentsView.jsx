@@ -9,11 +9,13 @@ class CommentsView extends React.Component {
   constructor() {
     super();
     this.state = {
-      usernameReply: "",
+      commentUsername: "",
+      commentId: "",
     };
     this.addComment = this.addComment.bind(this);
     this.addReply = this.addReply.bind(this);
     this.toggleReply = this.toggleReply.bind(this);
+    this.makeReply = this.makeReply.bind(this);
   }
 
   componentDidMount() {}
@@ -34,9 +36,10 @@ class CommentsView extends React.Component {
 
     this.props.updatePostState();
   }
-  toggleReply(username) {
+  toggleReply(username, id) {
     this.setState({
-      usernameReply: username,
+      commentUsername: username,
+      commentId: id,
     });
   }
   addReply(text) {
@@ -54,7 +57,33 @@ class CommentsView extends React.Component {
 
     this.props.updatePostState();
   }
-  initiateReply() {}
+
+  makeReply(commentUsername, id, text) {
+    let comments = JSON.parse(localStorage.getItem("comments"));
+    let index;
+    let comment;
+    for (var i = 0; i < comments.length; i++) {
+      if (comments[i].id === id) {
+        index = i;
+        comment = comments[i];
+      }
+    }
+
+    let replyToAdd = {
+      id: id,
+      timePosted: "1m",
+      username: "kgobakis",
+      userComment: commentUsername + " " + text,
+      avatar: "./media/avatar.jpg",
+      commentLikes: 100,
+    };
+    comment.children.push(replyToAdd);
+
+    comments[index] = comment;
+
+    localStorage.setItem("comments", JSON.stringify(comments));
+    this.props.updatePostState();
+  }
   render() {
     const { children, width } = this.props;
     let locallyLikedIds = JSON.parse(localStorage.getItem("locallyLikedIds"));
@@ -62,8 +91,8 @@ class CommentsView extends React.Component {
     return (
       <div style={styles.container}>
         {children &&
-          Object.values(children).map((comment) => (
-            <div key={comment.id}>
+          Object.values(children).map((comment, i) => (
+            <div key={i}>
               <Comment
                 toggleReply={this.toggleReply}
                 timePosted={comment.timePosted}
@@ -78,8 +107,8 @@ class CommentsView extends React.Component {
                 }
               />
               {comment.children &&
-                Object.values(comment.children).map((reply) => (
-                  <div key={reply.id} style={{ paddingLeft: 50 }}>
+                Object.values(comment.children).map((reply, i) => (
+                  <div key={i} style={{ paddingLeft: 50 }}>
                     <Comment
                       toggleReply={this.toggleReply}
                       timePosted={reply.timePosted}
@@ -105,7 +134,6 @@ class CommentsView extends React.Component {
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
           }}
         >
           <div
@@ -124,11 +152,13 @@ class CommentsView extends React.Component {
           <AddComment
             addComment={this.addComment}
             usernameReply={
-              this.state.usernameReply ? "@" + this.state.usernameReply : ""
+              this.state.commentUsername ? "@" + this.state.commentUsername : ""
             }
             emptyReply={() => {
-              this.setState({ usernameReply: "" });
+              this.setState({ commentUsername: "" });
             }}
+            makeReply={this.makeReply}
+            id={this.state.commentId}
           />
         </div>
       </div>
@@ -141,6 +171,8 @@ const styles = {
   container: {
     display: "flex",
     flexDirection: "column",
+    // justifyContent: "space-between",
+    // alignItems: "center",
   },
   solidLine: {
     borderTop: "1.4px solid #CDCDCD",

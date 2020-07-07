@@ -117,7 +117,7 @@ export default class Comment extends React.Component {
               <button
                 style={styles.button}
                 onClick={() => {
-                  this.props.toggleReply(this.props.username);
+                  this.props.toggleReply(this.props.username, this.props.id);
                 }}
               >
                 <strong
