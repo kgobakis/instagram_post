@@ -1,10 +1,24 @@
 import { mockData } from "../mockData/mock";
 
+/**
+ * Note: I would not recommend using an array as your state like you are here. It would be better to do { comments: mockData } instead of mockData itself. 
+ * Why? This is how Redux works: if your combineReducers looks like this: 
+ * combineReducers({ comments, likes }) 
+ * then you store will look like this: 
+ * {
+ *   comments: ....,
+ *   likes: ....
+ * }
+ */
+
 const comments = (state = mockData, action) => {
   switch (action.type) {
     case "ADD_COMMENT":
       return [
         ...state,
+        /**
+         * Note: It looks like you repeat this code block several times. Maybe you could abstract it out?
+         */
         {
           id: randomId(),
           username: action.username,
